@@ -128,7 +128,7 @@ function calculateZakat() {
 
 function resetForm() {
     document.querySelectorAll('input[type="number"]').forEach((input) => {
-        input.value = input.readOnly ? '' : '0';
+        input.value = input.readOnly ? '0.00' : '0';
     });
     document.querySelector('input[name="nisabType"][value="gold"]').checked = true;
     document.getElementById('results').style.display = 'none';
@@ -149,5 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('resetBtn').addEventListener('click', resetForm);
 
     fetchPrices();
-    setInterval(fetchPrices, 5 * 60 * 1000);
+    const priceRefreshInterval = setInterval(fetchPrices, 5 * 60 * 1000);
+    window.priceRefreshInterval = priceRefreshInterval;
 });
